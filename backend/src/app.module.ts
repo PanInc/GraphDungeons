@@ -13,7 +13,8 @@ import { TypeOrmConfigService } from './config/typeorm/typeorm.config';
       imports: [ConfigModule],
       inject: [ConfigService],
       useClass: TypeOrmConfigService
-    }),],
+    }),
+    ],
   controllers: [],
   providers: [],
 })
