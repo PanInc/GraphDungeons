@@ -1,4 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Professor } from '../professor/professor.entity';
+import { Student } from '../student/student.entity';
 
 @Entity({name: 'dungeons'})
 export class Dungeon {
@@ -11,6 +13,8 @@ export class Dungeon {
     @CreateDateColumn({ type: 'datetime', name: 'created_at' })
     createdAt: Date
 
-    // owner
+    @ManyToOne(() => Professor || Student, (owner) => owner.dungeons)
+    owner: Professor | Student
+
     // feedback
 }
