@@ -13,7 +13,9 @@
     "incremental": true,
     "skipLibCheck": true,
     "paths": {
-      "@models/*": ["./src/database/models/*"]
+      "@models/*": ["./src/database/models/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@config": ["./src/config/index"],
     }
   }
 }

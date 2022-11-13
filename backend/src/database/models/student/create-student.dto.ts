@@ -9,6 +9,11 @@ export class CreateStudentDto {
     @IsNotEmpty()
     name: string;
 
+    @IsString()
+    @IsNotEmpty()
+    @Matches(/^PC-(?=\d{0,3}[1-9])\d{7}$/)
+    professorCode: string;
+
     @Matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/)
     password: string;
 }

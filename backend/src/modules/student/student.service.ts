@@ -1,4 +1,5 @@
 import { CreateStudentDto, UpdateStudentDto, Student } from '@models/student';
+import { ProfessorService } from '@modules/professor';
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -7,7 +8,8 @@ import { Repository } from 'typeorm';
 export class StudentService {
   constructor(
     @InjectRepository(Student)
-    private readonly studentRepository: Repository<Student>
+    private readonly studentRepository: Repository<Student>,
+    private readonly professorService: ProfessorService
   ) { }
   async create(createStudentDto: CreateStudentDto) {
     if (await this.studentRepository.findOne({
@@ -15,6 +17,7 @@ export class StudentService {
         email: createStudentDto.email
       }
     })) throw new ForbiddenException('Duplicated entity')
+    if (await this.professorService.findOne(createStudentDto.professorCode)) throw new ForbiddenException('Professor not found')
     return await this.studentRepository.insert(createStudentDto)
   }
 
@@ -25,7 +28,7 @@ export class StudentService {
       },
       relations: ["dungeons"]
     })
-  }
+  } // criar find one or fail 
 
   async update(id: string, updateStudentDto: UpdateStudentDto) {
     const user = await this.findOne(id)

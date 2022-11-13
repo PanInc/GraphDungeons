@@ -1,8 +1,9 @@
+import { ProfessorModule } from '@modules/professor';
+import { StudentModule } from '@modules/student';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TypeOrmConfigService } from './config/typeorm/typeorm.config';
-import { StudentModule } from './modules/student/student.module';
+import { TypeOrmConfigService } from '@config';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { StudentModule } from './modules/student/student.module';
       useClass: TypeOrmConfigService
     }),
     StudentModule,
+    ProfessorModule,
     ],
   controllers: [],
   providers: [],
