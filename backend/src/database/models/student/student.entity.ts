@@ -15,5 +15,4 @@ export class Student extends BaseEntity {
     @JoinColumn({ name: 'dungeons_id', referencedColumnName: 'id' })
     dungeons: Dungeon[]
     
-    // dungeons
 }

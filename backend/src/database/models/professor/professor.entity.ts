@@ -16,5 +16,4 @@ export class Professor extends BaseEntity {
     @JoinColumn({ name: 'dungeons_id', referencedColumnName: 'id' })
     dungeons: Dungeon[]
     
-    // feedbacks
 }

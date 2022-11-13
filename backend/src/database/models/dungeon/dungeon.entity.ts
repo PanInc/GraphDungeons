@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
+import { Feedback } from "../feedback/feedback.entity";
 import { Professor } from '../professor/professor.entity';
 import { Student } from '../student/student.entity';
 
@@ -16,5 +17,7 @@ export class Dungeon {
     @ManyToOne(() => Professor || Student, (owner) => owner.dungeons)
     owner: Professor | Student
 
-    // feedback
+    @OneToOne(() => Feedback, (feedback) => feedback.dungeon)
+    @JoinColumn({ name: 'feedback_id', referencedColumnName: 'id' })
+    feedback: Feedback
 }

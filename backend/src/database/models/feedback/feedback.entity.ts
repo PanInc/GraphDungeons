@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Dungeon } from "../dungeon/dungeon.entity";
 
 @Entity({name: 'feedbacks'})
 export class Feedback {
@@ -11,6 +12,6 @@ export class Feedback {
     @CreateDateColumn({ type: 'datetime', name: 'created_at' })
     createdAt: Date
 
-    // dungeon
-    // owner
+    @OneToOne(() => Dungeon, (dungeon) => dungeon.feedback)
+    dungeon: Dungeon
 }
