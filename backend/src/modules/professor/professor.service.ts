@@ -11,7 +11,7 @@ export class ProfessorService {
     return `This action returns a #${code} professor`;
   }
 
-  async update(id: number, updateProfessorDto: UpdateProfessorDto) {
-    return `This action updates a #${id} professor`;
+  async update(code: string, updateProfessorDto: UpdateProfessorDto) {
+    return `This action updates a #${code} professor`;
   }
 }

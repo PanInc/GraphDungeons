@@ -11,23 +11,13 @@ export class ProfessorController {
     return this.professorService.create(createProfessorDto);
   }
 
-  @Get()
-  findAll() {
-    return this.professorService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.professorService.findOne(+id);
+    return this.professorService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProfessorDto: UpdateProfessorDto) {
-    return this.professorService.update(+id, updateProfessorDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.professorService.remove(+id);
+    return this.professorService.update(id, updateProfessorDto);
   }
 }
