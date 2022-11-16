@@ -9,6 +9,7 @@ export class Student extends BaseEntity {
     id: string;
 
     @ManyToOne(() => Professor, (prof) => prof.students)
+    @JoinColumn({ name: "professor_code", referencedColumnName: "code" })
     professor: Professor
 
     @OneToMany(() => Dungeon, (dungeon) => dungeon.owner)
