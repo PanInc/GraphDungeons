@@ -9,7 +9,7 @@ export class Feedback {
     @Column()
     message: string
 
-    @CreateDateColumn({ type: 'datetime', name: 'created_at' })
+    @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
     createdAt: Date
 
     @OneToOne(() => Dungeon, (dungeon) => dungeon.feedback)

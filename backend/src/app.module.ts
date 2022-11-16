@@ -1,6 +1,4 @@
-import { ProfessorModule } from '@modules/professor';
-import { StudentModule } from '@modules/student';
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '@config';
@@ -16,8 +14,6 @@ import { TypeOrmConfigService } from '@config';
       inject: [ConfigService],
       useClass: TypeOrmConfigService
     }),
-    StudentModule,
-    ProfessorModule,
     ],
   controllers: [],
   providers: [],
