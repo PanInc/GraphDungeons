@@ -11,6 +11,11 @@ export class ProfessorController {
     return this.professorService.create(createProfessorDto);
   }
 
+  @Get()
+  findAll() {
+    return this.professorService.findAll();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.professorService.findOne(id);

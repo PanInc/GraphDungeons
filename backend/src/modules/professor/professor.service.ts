@@ -13,8 +13,12 @@ export class ProfessorService {
     return await this.professorRepository.insert(createProfessorDto)
   }
 
+  async findAll() {
+    return await this.professorRepository.find({ relations: ["students"] })
+  }
+
   async findOne(code: string) {
-    return await this.professorRepository.findOne({ where: { code } })
+    return await this.professorRepository.findOne({ where: { code }, relations: ["students"] })
   }
 
   async update(code: string, updateProfessorDto: UpdateProfessorDto) {
