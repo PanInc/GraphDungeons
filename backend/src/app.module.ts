@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '@config';
 import { StudentModule } from '@modules/student';
 import { ProfessorModule } from '@modules/professor';
+import { DungeonModule } from './modules/dungeon/dungeon.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ProfessorModule } from '@modules/professor';
     }),
     StudentModule,
     ProfessorModule,
+    DungeonModule,
     ],
   controllers: [],
   providers: [],
