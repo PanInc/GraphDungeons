@@ -8,6 +8,7 @@ import { Professor } from '@models/professor';
 @Module({
   imports: [TypeOrmModule.forFeature([Student, Professor])],
   controllers: [StudentController],
-  providers: [StudentService]
+  providers: [StudentService],
+  exports: [StudentService]
 })
 export class StudentModule {}

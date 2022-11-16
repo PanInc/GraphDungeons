@@ -16,18 +16,8 @@ export class DungeonController {
     return this.dungeonService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.dungeonService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDungeonDto: UpdateDungeonDto) {
-    return this.dungeonService.update(+id, updateDungeonDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.dungeonService.remove(+id);
+  @Get(':code')
+  findOne(@Param('code') code: string) {
+    return this.dungeonService.findOne(code);
   }
 }

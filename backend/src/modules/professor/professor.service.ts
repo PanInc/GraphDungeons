@@ -21,6 +21,10 @@ export class ProfessorService {
     return await this.professorRepository.findOne({ where: { code }, relations: ["students"] })
   }
 
+  async findOneByEmail(email: string) {
+    return await this.professorRepository.findOne({ where: { email }, relations: ["students"] })
+  }
+
   async update(code: string, updateProfessorDto: UpdateProfessorDto) {
     return `This action updates a #${code} Professor`;
   }

@@ -11,15 +11,7 @@ export class DungeonService {
     return `This action returns all dungeon`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} dungeon`;
-  }
-
-  update(id: number, updateDungeonDto: UpdateDungeonDto) {
-    return `This action updates a #${id} dungeon`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} dungeon`;
+  findOne(code: string) {
+    return `This action returns a #${code} dungeon`;
   }
 }

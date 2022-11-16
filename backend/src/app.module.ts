@@ -5,6 +5,7 @@ import { TypeOrmConfigService } from '@config';
 import { StudentModule } from '@modules/student';
 import { ProfessorModule } from '@modules/professor';
 import { DungeonModule } from './modules/dungeon/dungeon.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { DungeonModule } from './modules/dungeon/dungeon.module';
     StudentModule,
     ProfessorModule,
     DungeonModule,
+    AuthModule,
     ],
   controllers: [],
   providers: [],

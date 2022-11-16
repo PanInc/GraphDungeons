@@ -16,6 +16,9 @@
       "@models/*": ["./src/database/models/*"],
       "@modules/*": ["./src/modules/*"],
       "@config": ["./src/config/index"],
+      "@types": ["./src/@types/index"],
+      "@guards": ["src/common/guards/index"],
+      "@decorators": ["src/common/decorators/index"],
     }
   }
 }
