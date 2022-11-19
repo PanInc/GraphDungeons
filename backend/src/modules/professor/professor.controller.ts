@@ -6,11 +6,6 @@ import { ProfessorService } from './professor.service';
 export class ProfessorController {
   constructor(private readonly professorService: ProfessorService) {}
 
-  @Post()
-  create(@Body() createProfessorDto: CreateProfessorDto) {
-    return this.professorService.create(createProfessorDto);
-  }
-
   @Get()
   findAll() {
     return this.professorService.findAll();

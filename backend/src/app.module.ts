@@ -6,6 +6,8 @@ import { StudentModule } from '@modules/student';
 import { ProfessorModule } from '@modules/professor';
 import { DungeonModule } from './modules/dungeon/dungeon.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AccessTokenGuard } from '@guards';
 
 @Module({
   imports: [
@@ -24,6 +26,11 @@ import { AuthModule } from './modules/auth/auth.module';
     AuthModule,
     ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AccessTokenGuard
+    }
+  ],
 })
 export class AppModule { }

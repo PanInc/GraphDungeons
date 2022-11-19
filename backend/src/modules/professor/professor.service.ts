@@ -1,6 +1,7 @@
 import { CreateProfessorDto, Professor, UpdateProfessorDto } from '@models/professor';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { hash } from 'argon2';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -26,6 +27,8 @@ export class ProfessorService {
   }
 
   async update(code: string, updateProfessorDto: UpdateProfessorDto) {
-    return `This action updates a #${code} Professor`;
+    const professor = await this.findOne(code);
+    this.professorRepository.merge(professor, updateProfessorDto);
+    return await this.professorRepository.save(professor);
   }
 }

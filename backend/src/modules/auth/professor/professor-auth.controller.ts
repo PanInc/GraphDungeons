@@ -41,6 +41,7 @@ export class ProfessorAuthController {
     return this.authService.logout(userId);
   }
 
+  @Public()
   @UseGuards(RefreshTokenGuard)
   @Post('refresh')
   @HttpCode(HttpStatus.OK)

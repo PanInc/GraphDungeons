@@ -1,7 +1,5 @@
 import { CreateProfessorDto } from "@models/professor";
-import { CreateStudentDto } from "@models/student";
 import { ProfessorService } from "@modules/professor";
-import { StudentService } from "@modules/student";
 import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
@@ -29,7 +27,7 @@ export class ProfessorAuthService {
 
   async signin_local(authInfo: SignInDto): Promise<Tokens> {
     const professor = await this.professorService.findOneByEmail(authInfo.email);
-
+    
     if (!professor) throw new UnauthorizedException();
 
     const password_match = await verify(professor.password, authInfo.password);
@@ -49,6 +47,8 @@ export class ProfessorAuthService {
 
   async updateRefreshToken(code: string, refresh_token: string) {
     const professor = await this.professorService.findOne(code);
+    console.log(professor);
+    
     if (!professor || !professor.hashedRefreshToken)
       throw new NotFoundException('Professor not found');
 

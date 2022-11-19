@@ -2,6 +2,7 @@ import { Professor } from '@models/professor';
 import { CreateStudentDto, Student, UpdateStudentDto } from '@models/student';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { hash } from 'argon2';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -15,7 +16,7 @@ export class StudentService {
   async create(createStudentDto: CreateStudentDto) {
     const professor = await this.professorRepository.findOne({ where: { code: createStudentDto.professor_code } })
     delete createStudentDto.professor_code
-    
+    createStudentDto.password = await hash(createStudentDto.password)
     return await this.studentRepository.insert({
       ...createStudentDto,
       professor
