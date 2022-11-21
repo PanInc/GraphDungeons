@@ -16,4 +16,14 @@ export class StudentController {
   update(@GetCurrentUserId() id: string, @Body() updateStudentDto: UpdateStudentDto) {
     return this.studentService.update(id, updateStudentDto);
   }
+
+  @Get('/dungeons')
+  async getDungeons(@GetCurrentUserId() code: string) {
+    return (await this.studentService.findOne(code)).dungeons
+  }
+
+  @Post('/dungeons/create')
+  createDungeon(@GetCurrentUserId() code: string, @Body() content: string) {
+    return this.studentService.createDungeon(code, content)
+  }
 }

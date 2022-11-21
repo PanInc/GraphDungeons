@@ -4,7 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '@config';
 import { StudentModule } from '@modules/student';
 import { ProfessorModule } from '@modules/professor';
-import { DungeonModule } from './modules/dungeon/dungeon.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AccessTokenGuard } from '@guards';
@@ -22,7 +21,6 @@ import { AccessTokenGuard } from '@guards';
     }),
     StudentModule,
     ProfessorModule,
-    DungeonModule,
     AuthModule,
     ],
   controllers: [],

@@ -13,26 +13,26 @@ export class ProfessorController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.professorService.findOne(id);
+  findOne(@GetCurrentUserId() code: string) {
+    return this.professorService.findOne(code);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProfessorDto: UpdateProfessorDto) {
-    return this.professorService.update(id, updateProfessorDto);
+  update(@GetCurrentUserId() code: string, @Body() updateProfessorDto: UpdateProfessorDto) {
+    return this.professorService.update(code, updateProfessorDto);
   }
 
-  @Post('/dungeon/create')
-  createDungeon(@GetCurrentUserId() code: string, @Body() content: string) {
-    return this.professorService.createDungeon(code, content)
-  }
-
-  @Get('/dungeon')
+  @Get('/dungeons')
   async getDungeons(@GetCurrentUserId() code: string) {
     return (await this.professorService.findOne(code)).dungeons
   }
 
-  @Get('/dungeon/students')
+  @Post('/dungeons/create')
+  createDungeon(@GetCurrentUserId() code: string, @Body() content: string) {
+    return this.professorService.createDungeon(code, content)
+  }
+
+  @Get('/dungeons/students')
   async getStudentsDungeons(@GetCurrentUserId() code: string) {
     return this.professorService.getStudentsDungeons(code)
   }
