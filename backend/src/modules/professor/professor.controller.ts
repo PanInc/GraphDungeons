@@ -5,7 +5,7 @@ import { ProfessorService } from './professor.service';
 
 @Controller('professor')
 export class ProfessorController {
-  constructor(private readonly professorService: ProfessorService) {}
+  constructor(private readonly professorService: ProfessorService) { }
 
   @Get()
   findAll() {
@@ -24,6 +24,16 @@ export class ProfessorController {
 
   @Post('/dungeon/create')
   createDungeon(@GetCurrentUserId() code: string, @Body() content: string) {
-    return this,this.professorService.createDungeon(code, content)
+    return this.professorService.createDungeon(code, content)
+  }
+
+  @Get('/dungeon')
+  async getDungeons(@GetCurrentUserId() code: string) {
+    return (await this.professorService.findOne(code)).dungeons
+  }
+
+  @Get('/dungeon/students')
+  async getStudentsDungeons(@GetCurrentUserId() code: string) {
+    return this.professorService.getStudentsDungeons(code)
   }
 }

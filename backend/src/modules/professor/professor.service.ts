@@ -22,26 +22,33 @@ export class ProfessorService {
   }
 
   async findOne(code: string) {
-    return await this.professorRepository.findOne({ where: { code }, relations: ["students"] })
+    return await this.professorRepository.findOne({ where: { code }, relations: ["students", "dungeons"] })
   }
 
   async findOneByEmail(email: string) {
-    return await this.professorRepository.findOne({ where: { email }, relations: ["students"] })
-  }
-
-  async createDungeon(code: string, content: string) {
-    const professor = await this.findOne(code)
-    const dungeon = this.dungeonRepository.create({content, owner: professor})
-    professor.dungeons = [...professor.dungeons, dungeon]
-
-    await this.dungeonRepository.save(dungeon)
-    await this.professorRepository.save(professor)
-    return;
+    return await this.professorRepository.findOne({ where: { email }, relations: ["students", "dungeons"] })
   }
 
   async update(code: string, updateProfessorDto: UpdateProfessorDto) {
     const professor = await this.findOne(code);
     this.professorRepository.merge(professor, updateProfessorDto);
     return await this.professorRepository.save(professor);
+  }
+
+  async createDungeon(code: string, content: string) {
+    const professor = await this.findOne(code)
+    const dungeon = this.dungeonRepository.create({ content, owner: professor })
+    professor.dungeons = [...professor.dungeons, dungeon]
+
+    await this.dungeonRepository.save(dungeon)
+    await this.professorRepository.save(professor)
+    return;
+  }
+  async getStudentsDungeons(code: string) {
+    const professor = await this.findOne(code)
+    const studentsDungeons = professor.students.map(student => student.dungeons)
+    let dungeons = []
+    studentsDungeons.forEach(s_dungeons => dungeons = dungeons.concat(s_dungeons))
+    return dungeons;
   }
 }
