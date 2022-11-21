@@ -1,6 +1,7 @@
 import { IsEmail, IsNotEmpty, IsString, Matches } from "class-validator";
 
 export class CreateProfessorDto {
+    code: string | null;
     @IsEmail()
     @IsString()
     email: string;

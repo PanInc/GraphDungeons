@@ -1,4 +1,4 @@
-import { CreateProfessorDto } from "@models/professor";
+import { CreateProfessorDto, generateProfessorCode } from "@models/professor";
 import { ProfessorService } from "@modules/professor";
 import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
@@ -17,6 +17,7 @@ export class ProfessorAuthService {
 
   //DB CHANGES
   async signup_local(professorDto: CreateProfessorDto): Promise<Tokens> {
+    professorDto = {...professorDto, code: generateProfessorCode()}
     await this.professorService.create(professorDto);
     const new_professor = await this.professorService.findOneByEmail(professorDto.email)
     const tokens = await this.getTokens(new_professor.code, new_professor.email);

@@ -1,5 +1,6 @@
-import { CreateProfessorDto, UpdateProfessorDto } from '@models/professor';
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { GetCurrentUserId } from '@decorators';
+import { UpdateProfessorDto } from '@models/professor';
+import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
 import { ProfessorService } from './professor.service';
 
 @Controller('professor')
@@ -19,5 +20,10 @@ export class ProfessorController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProfessorDto: UpdateProfessorDto) {
     return this.professorService.update(id, updateProfessorDto);
+  }
+
+  @Post('/dungeon/create')
+  createDungeon(@GetCurrentUserId() code: string, @Body() content: string) {
+    return this,this.professorService.createDungeon(code, content)
   }
 }
